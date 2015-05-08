@@ -72,8 +72,8 @@ def main(argv=None):
         args = parser.parse_args(argv)
 
         if args.indir:
-            if args.indir is not list:
-                args.indir = [args.indir]
+            #if args.indir is not list:
+            #    args.indir = [args.indir]
             print("indir = %s" % args.indir)
         if args.outdir:
             print("outdir = %s" % args.outdir)

@@ -115,8 +115,15 @@ class AutoEncode:
                 mkv = enzyme.MKV(f)
                 if mkv.info.title:
                     filename = mkv.info.title
-                    
-        filename =  filename + '.' + self._args.filetype
+        
+        count = 1
+        sub = ''            
+        while os.path.exists(self._args.outdir + os.sep + filename + sub + '.' + self._args.filetype):
+            sub = '-' + str(count)
+            count += 1
+        filename += sub
+            
+        filename = filename + '.' + self._args.filetype
         if self._args.tempdir:
             return self._args.tempdir + os.sep + 'encoding' + os.sep + filename
         else:
