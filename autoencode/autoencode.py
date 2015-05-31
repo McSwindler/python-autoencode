@@ -4,6 +4,7 @@ Created on May 2, 2015
 @author: McSwindler
 '''
 import os
+import re
 import sys
 import hashlib
 import shutil
@@ -114,12 +115,12 @@ class AutoEncode:
             with open(infile, 'rb') as f:
                 mkv = enzyme.MKV(f)
                 if mkv.info.title:
-                    filename = mkv.info.title
+                    filename = re.sub('[^\w\-_\. ]', '-', mkv.info.title)
         
         count = 1
         sub = ''            
         while os.path.exists(self._args.outdir + os.sep + filename + sub + '.' + self._args.filetype):
-            sub = '-' + str(count)
+            sub = '.' + str(count)
             count += 1
         filename += sub
             
